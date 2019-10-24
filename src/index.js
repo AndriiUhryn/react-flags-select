@@ -126,6 +126,11 @@ class ReactFlagsSelect extends Component {
 		let selectedSize = this.props.selectedSize;
 		let optionsSize = this.props.optionsSize;
 		let alignClass = this.props.alignOptions.toLowerCase() === 'left' ? 'to--left' : '';
+		let countriesToShow = (this.state.filter ? this.state.filteredCountries : this.state.countries);
+		
+		if (isSelected) {
+			countriesToShow = countriesToShow.filter(countryCode => countryCode !== isSelected);
+		}
 		
 		return (<div className={`flag-select ${this.props.className ? this.props.className : ''}`}>
 			<div
@@ -165,7 +170,7 @@ class ReactFlagsSelect extends Component {
 						</div>
 					}
 					{
-						(this.state.filter ? this.state.filteredCountries : this.state.countries).map(countryCode =>
+						countriesToShow.map(countryCode =>
 							<div
 								key={countryCode}
 								onClick={() => this.onSelect(countryCode)}
