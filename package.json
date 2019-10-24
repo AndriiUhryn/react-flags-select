@@ -1,6 +1,6 @@
 {
-  "name": "react-flags-select",
-  "version": "1.1.10",
+  "name": "custom-react-flags-select",
+  "version": "0.0.1",
   "description": "react-flags-select React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,30 +21,22 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "prop-types": "^15.5.8"
+    "prop-types": "15.5.8"
   },
   "peerDependencies": {
     "react": "15.x"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-sass": "^3.1.0",
-    "nwb": "^0.23.0",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "gulp": "3.9.1",
+    "gulp-sass": "3.1.0",
+    "nwb": "0.23.0",
+    "react": "15.5.4",
+    "react-dom": "15.5.4",
     "react-syntax-highlight": "0.0.6"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ekwonye-richard/react-flags-select.git"
+    "url": "git+https://github.com/AndriiUhryn/react-flags-select.git"
   },
-  "author": "Richard Ekwonye",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ekwonye-richard/react-flags-select/issues"
-  },
-  "homepage": "https://github.com/ekwonye-richard/react-flags-select#readme",
-  "keywords": [
-    "react-component"
-  ]
+  "author": "Andrii Uhryn"
 }
