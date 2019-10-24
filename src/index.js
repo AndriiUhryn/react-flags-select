@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import flags from '../flags';
+import flags from './flags';
 import countries from './countries';
 
 class ReactFlagsSelect extends Component {
