@@ -137,7 +137,7 @@ class ReactFlagsSelect extends Component {
 				className={`selected--flag--option ${this.props.disabled ? 'no--focus' : ''}`}
 			>
 				{
-					isSelected && <span
+					isSelected && <div
 						style={{ width: `${selectedSize}px`, height: `${selectedSize}px` }}
 						className="country-flag"
 					>
@@ -145,25 +145,8 @@ class ReactFlagsSelect extends Component {
 							alt={isSelected}
 							src={require(`../flags/${isSelected.toLowerCase()}.svg`)}
 						/>
-						{
-							this.props.showSelectedLabel && <span className="country-label">
-								{
-									this.props.customLabels[isSelected] || countries[isSelected]
-								}
-							</span>
-						}
-					</span>
+					</div>
 				}
-				{
-					!isSelected && <span className="country-label">
-						{
-							this.props.placeholder
-						}
-					</span>
-				}
-				<span className={`arrow-down ${this.props.disabled ? 'hidden' : ''}`}>
-					▾
-				</span>
 			</div>
 			{
 				this.state.openOptions && <div
@@ -194,7 +177,7 @@ class ReactFlagsSelect extends Component {
 									className="country-flag"
 									style={{ width: `${optionsSize}px`, height: `${optionsSize}px` }}
 								>
-									<img src={require(`../flags/${isSelected.toLowerCase()}.svg`)}/>
+									<img src={require(`../flags/${countryCode.toLowerCase()}.svg`)}/>
 									{
 										this.props.showOptionLabel && <span className="country-label">
 											{
@@ -216,6 +199,7 @@ ReactFlagsSelect.defaultProps = {
 	selectedSize: 16,
 	optionsSize: 14,
 	placeholder: 'Select a country',
+	showArrow: true,
 	showSelectedLabel: true,
 	showOptionLabel: true,
 	alignOptions: 'right',
@@ -229,6 +213,7 @@ ReactFlagsSelect.defaultProps = {
 ReactFlagsSelect.propTypes = {
 	countries: PropTypes.array,
 	blackList: PropTypes.bool,
+	showArrow: PropTypes.bool,
 	customLabels: PropTypes.object,
 	selectedSize: PropTypes.number,
 	optionsSize: PropTypes.number,
