@@ -2,7 +2,6 @@
 /es
 /node_modules
 /umd
-/demo/dist
 npm-debug.log*
 .DS_Store
 *.icloud

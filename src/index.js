@@ -4,21 +4,18 @@ import PropTypes from 'prop-types';
 import countries from './countries';
 
 class ReactFlagsSelect extends Component {
-	constructor(props) {
-		super(props);
-		
-		const defaultCountry = countries[this.props.defaultCountry] && this.props.defaultCountry;
-		
-		this.state = {
-			defaultCountry,
-			openOptions: false,
-			filteredCountries: []
-		};
-	}
+	state = {
+		openOptions: false,
+		filteredCountries: []
+	};
 	
 	componentDidMount() {
 		this.setCountries();
 		!this.props.disabled && window.addEventListener('click', this.closeOptions);
+		
+		this.setState({
+			defaultCountry: countries[this.props.defaultCountry] && this.props.defaultCountry
+		});
 	}
 	
 	componentDidUpdate(prevProps) {
@@ -146,7 +143,7 @@ class ReactFlagsSelect extends Component {
 					>
 						<img
 							alt={isSelected}
-							src={require('./flags')[isSelected]}
+							src={require(`../flags/${isSelected.toLowerCase()}`)}
 						/>
 						{
 							this.props.showSelectedLabel && <span className="country-label">
@@ -197,7 +194,7 @@ class ReactFlagsSelect extends Component {
 									className="country-flag"
 									style={{ width: `${optionsSize}px`, height: `${optionsSize}px` }}
 								>
-									<img src={require('./flags')[countryCode]}/>
+									<img src={require(`../flags/${isSelected.toLowerCase()}`)}/>
 									{
 										this.props.showOptionLabel && <span className="country-label">
 											{
