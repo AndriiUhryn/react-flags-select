@@ -4,6 +4,11 @@
   "description": "react-flags-select React component",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "author": {
+    "name": "Andrii Uhryn",
+    "github": "https://github.com/AndriiUhryn"
+  },
+  "homepage": "https://github.com/AndriiUhryn/react-flags-select.git",
   "files": [
     "css",
     "scss",
@@ -38,5 +43,7 @@
     "type": "git",
     "url": "git+https://github.com/AndriiUhryn/react-flags-select.git"
   },
-  "author": "Andrii Uhryn"
+  "bugs": {
+    "url": "https://github.com/AndriiUhryn/react-flags-select/issues"
+  }
 }
