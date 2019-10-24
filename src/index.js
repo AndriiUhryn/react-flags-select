@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import flags from '../flags';
 import countries from './countries';
 
 class ReactFlagsSelect extends Component {
@@ -146,7 +147,7 @@ class ReactFlagsSelect extends Component {
 					>
 						<img
 							alt={isSelected}
-							src={require(`../flags/${isSelected.toLowerCase()}.svg`)}
+							src={flags[isSelected]}
 						/>
 						{
 							this.props.showSelectedLabel && <span className="country-label">
@@ -187,17 +188,17 @@ class ReactFlagsSelect extends Component {
 					{
 						(this.state.filter ? this.state.filteredCountries : this.state.countries).map(countryCode =>
 							<div
-								className={`flag-option ${this.props.showOptionLabel ? 'has-label' : ''}`}
 								key={countryCode}
-								tabIndex="0"
 								onClick={() => this.onSelect(countryCode)}
 								onKeyUp={evt => this.onSelectWithKeyboard(evt, countryCode)}
+								tabIndex="0"
+								className={`flag-option ${this.props.showOptionLabel ? 'has-label' : ''}`}
 							>
 								<span
 									className="country-flag"
 									style={{ width: `${optionsSize}px`, height: `${optionsSize}px` }}
 								>
-									<img src={require(`../flags/${countryCode.toLowerCase()}.svg`)}/>
+									<img src={flags[countryCode]}/>
 									{
 										this.props.showOptionLabel && <span className="country-label">
 											{
