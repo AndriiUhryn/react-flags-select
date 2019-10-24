@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import flags from './flags';
 import countries from './countries';
 
 class ReactFlagsSelect extends Component {
@@ -147,7 +146,7 @@ class ReactFlagsSelect extends Component {
 					>
 						<img
 							alt={isSelected}
-							src={flags[isSelected]}
+							src={require('./flags')[isSelected]}
 						/>
 						{
 							this.props.showSelectedLabel && <span className="country-label">
@@ -198,7 +197,7 @@ class ReactFlagsSelect extends Component {
 									className="country-flag"
 									style={{ width: `${optionsSize}px`, height: `${optionsSize}px` }}
 								>
-									<img src={flags[countryCode]}/>
+									<img src={require('./flags')[countryCode]}/>
 									{
 										this.props.showOptionLabel && <span className="country-label">
 											{
