@@ -8,32 +8,32 @@ class ReactFlagsSelect extends Component {
 		openOptions: false,
 		filteredCountries: []
 	};
-	
+
 	componentDidMount() {
 		this.setCountries();
 		!this.props.disabled && window.addEventListener('click', this.closeOptions);
-		
+
 		this.setState({
 			defaultCountry: countries[this.props.defaultCountry] && this.props.defaultCountry
 		});
 	}
-	
+
 	componentDidUpdate(prevProps) {
 		if (prevProps.countries !== this.props.countries || prevProps.blackList !== this.props.blackList) {
 			this.setCountries();
 		}
 	}
-	
+
 	componentWillUnmount() {
 		!this.props.disabled && window.removeEventListener('click', this.closeOptions);
 	}
-	
+
 	toggleOptions = () => {
 		!this.state.disabled && this.setState({
 			openOptions: !this.state.openOptions
 		});
 	};
-	
+
 	toggleOptionsWithKeyboard = (evt) => {
 		evt.preventDefault();
 		if (evt.keyCode === 13) {
@@ -45,9 +45,9 @@ class ReactFlagsSelect extends Component {
 				openOptions: false
 			});
 		}
-		
+
 	};
-	
+
 	closeOptions = (event) => {
 		if (event.target !== this.refs.selectedFlag && event.target !== this.refs.flagOptions && event.target !== this.refs.filterText) {
 			this.setState({
@@ -55,7 +55,7 @@ class ReactFlagsSelect extends Component {
 			});
 		}
 	};
-	
+
 	onSelect = (countryCode) => {
 		this.setState({
 			selected: countryCode,
@@ -63,7 +63,7 @@ class ReactFlagsSelect extends Component {
 		});
 		this.props.onSelect && this.props.onSelect(countryCode);
 	};
-	
+
 	onSelectWithKeyboard = (evt, countryCode) => {
 		evt.preventDefault();
 		if (evt.keyCode === 13) {
@@ -75,32 +75,32 @@ class ReactFlagsSelect extends Component {
 			this.toggleOptions();
 		}
 	};
-	
+
 	updateSelected = (countryCode) => {
 		let isValid = countries[countryCode];
-		
+
 		isValid && this.setState({
 			selected: countryCode
 		});
 	};
-	
+
 	filterSearch = (evt) => {
 		let filterValue = evt.target.value;
 		let filteredCountries = filterValue && this.state.countries.filter(key => {
 			let label = this.props.customLabels[key] || countries[key];
 			return label && label.match(new RegExp(filterValue, 'i'));
 		});
-		
+
 		this.setState({ filter: filterValue, filteredCountries: filteredCountries });
 	};
-	
+
 	setCountries = () => {
 		const fullCountries = Object.keys(countries);
-		
+
 		let selectCountries = this.props.countries && this.props.countries.filter(country => {
 			return countries[country];
 		});
-		
+
 		//Filter BlackList
 		if (this.props.blackList && selectCountries) {
 			selectCountries = fullCountries.filter(countryKey => {
@@ -109,29 +109,29 @@ class ReactFlagsSelect extends Component {
 				}).length === 0;
 			});
 		}
-		
+
 		this.setState({
 			countries: selectCountries || fullCountries
 		}, () => {
 			const { selected } = this.state;
-			
+
 			if (selected && !this.state.countries.includes(selected)) {
 				this.setState({ selected: null });
 			}
 		});
 	};
-	
+
 	render() {
 		let isSelected = this.state.selected || this.state.defaultCountry;
 		let selectedSize = this.props.selectedSize;
 		let optionsSize = this.props.optionsSize;
 		let alignClass = this.props.alignOptions.toLowerCase() === 'left' ? 'to--left' : '';
 		let countriesToShow = (this.state.filter ? this.state.filteredCountries : this.state.countries);
-		
+
 		if (isSelected) {
 			countriesToShow = countriesToShow.filter(countryCode => countryCode !== isSelected);
 		}
-		
+
 		return (<div className={`flag-select ${this.props.className ? this.props.className : ''}`}>
 			<div
 				ref="selectedFlag"
@@ -148,7 +148,7 @@ class ReactFlagsSelect extends Component {
 					>
 						<img
 							alt={isSelected}
-							src={require(`../flags/${isSelected.toLowerCase()}.svg`)}
+							src={require(`../flags/${isSelected.toLowerCase()}.svg`).default}
 						/>
 					</div>
 				}
@@ -182,7 +182,7 @@ class ReactFlagsSelect extends Component {
 									className="country-flag"
 									style={{ width: `${optionsSize}px`, height: `${optionsSize}px` }}
 								>
-									<img src={require(`../flags/${countryCode.toLowerCase()}.svg`)}/>
+									<img src={require(`../flags/${countryCode.toLowerCase()}.svg`).default}/>
 									{
 										this.props.showOptionLabel && <span className="country-label">
 											{
