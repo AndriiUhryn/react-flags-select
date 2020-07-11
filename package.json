@@ -1,6 +1,6 @@
 {
   "name": "react-flags-select-ssr",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "react-flags-select-ssr React component",
   "main": "lib/index.js",
   "module": "es/index.js",
